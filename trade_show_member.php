@@ -10,6 +10,8 @@
 	$result = mysqli_query($link,$sql);
 	//สร้างแถบเมนู
 	require("navbar_a.html");
+	//เช็คว่าเป็นผู้ใช้งานหรือแอดมินหรือไม่
+	//require("navbar_officer.php");
 
 	//หัวข้อตาราง
 	echo "<table border='1' align='center' width='900'>";

@@ -1,7 +1,7 @@
 <?php
-	$name = $_POST['name'];
-	$pirce = $_POST['pirce'];
-	$amount = $_POST['amount'];
+	$Sname = $_POST['Sname'];
+	$Sgroup = $_POST['Sgroup'];
+	$Spirce = $_POST['Spirce'];
 
 	//เชื่อมต่อฐานข้อมูล 
 	$link = mysqli_connect("localhost", "root");
@@ -9,8 +9,8 @@
 	$sql = "use recyclebank";
 	$result = mysqli_query($link,$sql);
 		
-	$sql = "insert into stationary (Sname, Spirce, Samount)".
-	"values('$name', '$pirce', '$amount')";
+	$sql = "insert into stationary (Sname, Sgroup, Spirce)".
+	"values('$Sname', '$Sgroup', '$Spirce')";
 	$result = mysqli_query($link,$sql);	
 	
 	//สร้างแถบเมนู

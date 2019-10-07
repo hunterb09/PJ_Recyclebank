@@ -1,126 +1,79 @@
 <?php
 	//1. เชื่อมต่อ database:
-	$link = mysqli_connect("localhost", "root");
-	mysqli_set_charset($link,'utf8');
-	$sql = "use recyclebank";
-	$result = mysqli_query($link,$sql);
-	$sql = "SELECT * FROM trade";
-	$result = mysqli_query($link,$sql);
-	//สร้างแถบเมนู
-	require("navbar_a.html");
-	echo '<h2><u> ระบบรับซื้อ/แลกเครื่องเขียน  </u></h2><br>';
-?>
 
-<html>
+	session_start();
+	//เช็คว่าเป็นผู้ใช้งานหรือแอดมินหรือไม่
+	require("navbar_officer.php");
+	echo '<br><a href="trade_search.php">ย้อนกลับ </a>';
+	echo '<h2><u> ระบบรับซื้อขยะ  </u></h2>';
+	echo '<h3><u> ฝากถอน  </u></h3><br>';
+?>
+<!doctype html>
+<html lang="th">
 	<head>
+		<meta charset="utf-8">
 		<title>Recycle Bank</title>
 	</head>
 	<body>
-		<script>
-			function myFunction()
-			{
-			<?php
-			$link = mysqli_connect("localhost", "root");
-			mysqli_set_charset($link,'utf8');
-			$sql = "use recyclebank";
-			$result = mysqli_query($link,$sql);
-			$sql = "SELECT * FROM member WHERE MID = '".$_POST['id']."' ";
-			$result = mysqli_query($link,$sql);
-			
-					//หัวข้อตาราง
-			echo "<table border='1' align='center' width='900'>";
-			echo "<tr>";
-			echo "<tr align='center' bgcolor='#CCCCCC'>
-					<td>รหัส </td>
-					<td>คำนำหน้า </td>
-					<td>ชื่อ </td>
-					<td>นามสกุล </td>
-					<td>ตำแหน่ง </td>
-					<td>สาขา </td>
-					<td>ชั้นปี </td>
-					<td>รหัสนักศึกษา </td>
-					<td>วันเดือนปีที่สมัคร </td>
-					<td>แก้ไข </td>
-					<td>ลบ </td>
-				  </tr>";
-				  
-			session_start();
-			while($row = mysqli_fetch_array($result)) {
-			  echo "<tr align='center'>";
-				  echo "<td>" .$row["MID"] .  "</td> ";
-				  echo "<td>" .$row["Mtitle"] .  "</td> ";
-				  echo "<td>" .$row["Mname"] .  "</td> ";
-				  echo "<td>" .$row["Mlastname"] .  "</td> ";
-				  echo "<td>" .$row["Mposition"] .  "</td> ";
-				  echo "<td>" .$row["Mbranch"] .  "</td> ";
-				  echo "<td>" .$row["Myear"] .  "</td> ";
-				  echo "<td>" .$row["MstuID"] .  "</td> ";
-				  echo "<td>" .$row["Mdate"] .  "</td> ";
-				  
-				  $MID = $row["MID"];
-				  $_SESSION["MID"] = $row["MID"];
-
-			  echo "</tr>";
-			}
-			echo "</table>";
-			?>
-			}
-		</script>
-		
-		
 		
 		<form method=post action="">
 			<table border="0" width="80%" align="center">
 				<tbody>
 					<tr>
-						<td class="text-right" width="10%">รหัสสมาชิก: </td>
-						<td width="10%"><input type="text" name="id"><input type="submit" value="OK" onclick="myFunction()"></td>
-					</tr>
-					<tr height="70">
-						<td class="text-right" width="10%">ชื่อ: </td>
-						<td class="text-center" width="10%">ยอดเงินปัจจุบัน: </td>
+						<!--<td class="text-right" width="10%">รหัสสมาชิก:</td> <td class="text-left" width="10%"><input type="text" name="MID" value="<?php //echo $row["MID"]; ?>"></td>-->
+						<td class="text-right" width="10%">รหัสสมาชิก:</td> <td class="text-left" width="10%"> <?php echo $row["MID"]; ?></td>
+						<td class="text-right" width="10%">ชื่อ:</td> <td class="text-left" width="10%"><?php echo $row["Mname"]; ?></td>
+						<td class="text-right" width="10%">ยอดเงินปัจจุบัน =</td> <td class="text-left" width="10%"> <?php echo $row["Mbalance"]; ?>บาท </td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
-		
-		<form method=post action="garbage_search_id.php">
-			<table border="0" width="80%" align="center">
-				<tbody>
-					<tr>
-						<td class="text-right" width="10%">จากรหัส: </td>
-						<td width="10%"><input type="text" name="id"><input type="submit" value="OK"></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-
+		<!--
 		<a href="#" onclick="MyFunction();" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ฝากขยะ </a>
 		<a href="#" onclick="MyFunction();" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ถอน </a><br><br>
-		
+		-->
 		<form method=post action="trade_show_member.php">
 			<table border="0" width="80%" align="center">
 				<tbody>
-				
 					<tr>
-
-						<td class="text-right" width="10%">รายการ
-							<select name="name">
+						<td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td>
+					</tr>
+					<tr>
+						<td class="text-right" width="10%">วันที่: </td>
+						<td class="text-left" width="10%"><input type="date" name="Tdate"></td>
+						<td class="text-right" width="10%">กลุ่มขยะ: </td>
+						<td class="text-left" width="10%">
+							<select name="Ggroup">
+								<option value="01/05/2019-30/06/2019">01/05/2019-30/06/2019</option>
+								<option value="01/07/2019+">01/07/2019+</option>
+							</select>
+						</td>
+						<td><a href='officer_update_form.php?Ggroup=Ggroup'>ค้นหา</a></td>
+						<td class="text-right" width="10%">รายการขยะ:</td>
+							<td class="text-left"><select name="Gname">
 								<option value="พลาสติกกรอบ	">พลาสติกกรอบ	</option>
 								<option value="พลาสติกรวม">พลาสติกรวม</option>
 								<option value="พลาสติกใส(แกะ)">พลาสติกใส(แกะ)</option>
 								<option value="กระดาษขาวดำ">กระดาษขาวดำ</option>
 								<option value="กระดาษสี">กระดาษสี</option>
-							</select></td>
-						<td class="text-center" width="10%">ราคา </td>
+							</select>
+						</td>
 					</tr>
 					<tr>
+						<td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td>
+					</tr>
+					<tr>
+						<td class="text-right" width="10%" height="50">ราคา: </td>
+						<td class="text-left" width="10%"><input type="text" name="Tpirce">/โล</td>
 						<td class="text-right" width="10%" height="50">จำนวน: </td>
-						<td width="10%"><input type="text" name="amount"></td>
+						<td class="text-left" width="20%"><input type="text" name="Tamount">กิโลกรัม</td>
+						<td class="text-left" width="5%"><input type="submit" value="คำนวณ"></td>
+						<td class="text-right" width="5%" height="50">ราคารวม: </td>
+						<td class="text-left" width="15%"><input type="text" name="Ttotal">บาท</td>
 					</tr>
 				</tbody>
 			</table><br>
-			<input type="reset" value="Reset">
+			<input type="reset" value="ล้าง">
 			<input type="submit" value="บันทึก">
 		</form>
 	</body>
@@ -132,8 +85,11 @@
 	echo "<table border='1' align='center' width='700'>";
 	echo "<tr>";
 	echo "<tr align='center' bgcolor='#CCCCCC'>
+			<td>ลำดับ </td>
+			<td>วันที่ </td>
 			<td>รหัสสมาชิก </td>
-			<td>รายการ </td>
+			<td>รหัสขยะ </td>
+			<td>รหัสเครื่องเขียน </td>
 			<td>ราคา </td>
 			<td>จำนวน </td>
 			<td>ราคารวม</td>
@@ -142,22 +98,5 @@
 			<td>ยอดคงเหลือ</td>
 		  </tr>";
 		  
-	while($row = mysqli_fetch_array($result)) {
-	  echo "<tr>";
-		  echo "<td>" .$row["GID"] .  "</td> ";
-		  echo "<td>" .$row["Gtype"] .  "</td> ";
-		  echo "<td>" .$row["Gname"] .  "</td> ";
-		  echo "<td>" .$row["Gpirce"] .  "</td> ";
-		  //
-		  $GID = $row["GID"];
-		  $_SESSION["GID"] = $row["GID"];
-		  //แก้ไขข้อมูล
-		  //echo "<td><a href='garbage_edit.php?ID=$row[0]'>edit</a></td> ";
-		  echo "<td><a href='garbage_edit.php?ID=$_SESSION[GID]'>แก้ไข </a></td>";
-
-		  //ลบข้อมูล
-		  echo "<td><a href='garbage_delete.php?ID=$_SESSION[GID]' onclick=\"return confirm('ต้องการที่จะลบผู้ใช้งานหรือไม่ ')\">ลบ</a></td> ";
-	  echo "</tr>";
-	}
 	echo "</table>";
 ?>

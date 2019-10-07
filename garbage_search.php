@@ -1,7 +1,7 @@
 <?php
+	session_start();
 	//สร้างแถบเมนู
-	require("navbar_a.html");
-	
+	require("navbar_officer.php");
 ?>
 <html>
 	<head>
@@ -14,7 +14,7 @@
 				<tbody>
 					<tr>
 						<td class="text-right" width="10%">จากรหัส: </td>
-						<td width="10%"><input type="text" name="id"><input type="submit" value="ค้นหา"></td>
+						<td class="text-left" width="10%"><input type="text" name="id"><input type="submit" value="ค้นหา"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -25,7 +25,7 @@
 				<tbody>
 					<tr>
 						<td class="text-right" width="10%">จากชื่อ: </td>
-						<td width="10%"><input type="text" name="name"><input type="submit" value="ค้นหา"> </td>
+						<td class="text-left" width="10%"><input type="text" name="name"><input type="submit" value="ค้นหา"> </td>
 					</tr>
 				</tbody>
 			</table>
@@ -36,7 +36,7 @@
 				<tbody>
 					<tr>
 						<td class="text-right" width="10%">จากประเภท: </td>
-						<td width="10%">
+						<td class="text-left" width="10%">
 							<select name="type">
 								<option value="พลาสติก">พลาสติก</option>
 								<option value="กระดาษ">กระดาษ</option>
@@ -50,12 +50,12 @@
 			</table>
 		</form>
 		
-			<form method=post action="garbage_search_pirce.php">
+		<form method=post action="garbage_search_pirce.php">
 			<table border="0" width="80%" align="center">
 				<tbody>
 					<tr>
 						<td class="text-right" width="10%">จากราคา: </td>
-						<td width="10%"><input type="tinyint" name="pirce"><input type="submit" value="ค้นหา"> </td>
+						<td class="text-left" width="10%"><input type="tinyint" name="pirce"><input type="submit" value="ค้นหา"> </td>
 					</tr>
 				</tbody>
 			</table>

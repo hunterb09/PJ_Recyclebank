@@ -1,46 +1,40 @@
 <?php
 	session_start();
-	
-	if($_SESSION['Status'] == "admin"){
-			
-	}
-	else{
-		header("location:login.html");
-	}
-	//สร้างแถบเมนู
-	require("navbar_a.html");
+	//เช็คว่าเป็นผู้ใช้งานหรือแอดมินหรือไม่
+	require("navbar_officer.php");
 ?>
 <html>
 	<head>
 		<title>Recycle Bank</title>
 	</head>
 	<body>
-		<h2><u> เพิ่มผู้ใช้งาน  </u></h2><br>
+		<h2><u> เพิ่มเจ้าหน้าที่  </u></h2><br>
 		<form method=post action="officer_insert.php">
 			<table border="0" width="80%" align="center">
 				<tbody>
 					<tr>
-						<td class="text-right" width="10%">Username: </td>
-						<td width="10%"><input type="text" name="user"></td>
+						<td class="text-right" width="10%">ID: </td>
+						<td class="text-left" width="10%"><input type="text" name="OID" required autofocus></td>
 					</tr>
 
 					<tr>
 						<td class="text-right" width="10%">Password: </td>
-						<td width="10%"><input type="password" name="pass"></td>
+						<td class="text-left" width="10%"><input type="password" name="Opassword" required></td>
 					</tr>
 					<tr>
 						<td class="text-right" width="10%">Name: </td>
-						<td width="10%"><input type="text" name="name"></td>
+						<td class="text-left" width="10%"><input type="text" name="Oname" required></td>
 					</tr>
 					<tr>
 						<td class="text-right" width="10%">Status: </td>
-						<td width="10%"><input type="radio" name="status" onclick="check(this.value)" value="admin">admin
-							<input type="radio" name="status" onclick="check(this.value)" value="officer">officer</td>
+						<td class="text-left" width="10%">
+							<input type="radio" name="Ostatus" onclick="check(this.value)" value="admin">admin
+							<input type="radio" name="Ostatus" onclick="check(this.value)" value="officer" checked="checked">officer</td>
 					</tr>
 				</tbody>
 			</table><br>
-			<input type="reset" value="Reset">
-			<input type="submit" value="OK">
+			<input type="reset" value="ล้าง">
+			<input type="submit" value="เพิ่ม">
 		</form>
 		<br><a href='officer_show.php'>ย้อนกลับ </a>
 	</body>

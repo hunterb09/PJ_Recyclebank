@@ -1,12 +1,13 @@
 <?php
-	$title = $_POST['title'];
-	$name = $_POST['name'];
-	$lastname = $_POST['lastname'];
-	$position = $_POST['position'];
-	$branch = $_REQUEST['branch'];
-	$year = $_REQUEST['year'];
-	$stuid = $_POST['stuid'];
-	$date = $_POST['date'];
+	$MID = $_POST['MID'];
+	$Mname = $_POST['Mname'];
+	$Mdate = $_POST['Mdate'];
+	$Mposition = $_POST['Mposition'];
+	$Mbranch = $_REQUEST['Mbranch'];
+	$MstuID = $_POST['MstuID'];
+	$Myear = $_REQUEST['Myear'];
+	$MphoneN = $_POST['MphoneN'];
+	$Memail = $_POST['Memail'];
 	
 	//เชื่อมต่อฐานข้อมูล 
 	$link = mysqli_connect("localhost", "root");
@@ -14,8 +15,8 @@
 	$sql = "use recyclebank";
 	$result = mysqli_query($link,$sql);
 		
-	$sql = "insert into member (Mtitle, Mname, Mlastname, Mposition, Mbranch, Myear, MstuID, Mdate)".
-	"values('$title', '$name', '$lastname', '$position', '$branch', '$year', '$stuid', '$date')";
+	$sql = "insert into member (MID, Mname, Mdate, Mposition, Mbranch, MstuID, Myear, MphoneN, Memail)".
+	"values('$MID', '$Mname', '$Mdate', '$Mposition', '$Mbranch', '$MstuID', '$Myear', '$MphoneN', '$Memail')";
 	$result = mysqli_query($link,$sql);	
 	
 	//สร้างแถบเมนู

@@ -1,6 +1,7 @@
 <?php
+	session_start();
 	//สร้างแถบเมนู
-	require("navbar_a.html");
+	require("navbar_officer.php");
 ?>
 <html>
 	<head>
@@ -13,8 +14,8 @@
 				<tbody>
 					<tr>
 						<td class="text-right" width="10%">ประเภทขยะ: </td>
-						<td width="10%">
-							<select name="type">
+						<td class="text-left" width="10%">
+							<select name="Gtype">
 								<option value="พลาสติก">พลาสติก</option>
 								<option value="กระดาษ">กระดาษ</option>
 								<option value="แก้ว">แก้ว</option>
@@ -23,11 +24,20 @@
 					</tr>
 					<tr>
 						<td class="text-right" width="10%">ชื่อขยะ: </td>
-						<td width="10%"><input type="text" name="name"></td>
+						<td class="text-left" width="10%"><input type="text" name="Gname"></td>
+					</tr>
+					<tr>
+						<td class="text-right" width="10%">กลุ่มขยะ: </td>
+						<td class="text-left">
+							<select name="Ggroup">
+								<option value="01/05/2019-30/06/2019">01/05/2019-30/06/2019</option>
+								<option value="01/07/2019+">01/07/2019+</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td class="text-right" width="10%">ราคาขยะ: </td>
-						<td width="10%"><input type="text" name="pirce">บาท/โล</td>
+						<td class="text-left" width="10%"><input type="text" name="Gpirce">บาท/โล</td>
 					</tr>
 				</tbody>
 			</table><br>

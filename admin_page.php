@@ -1,15 +1,15 @@
 
 <?php
 	session_start();
-	
-	if($_SESSION['OfficerID'] == "")
+	//เช็คว่าเป็นเจ้าหน้าที่หรือแอดมินหรือไม่
+	/*if($_SESSION['OID'] == "")
 	{
-		header("location:login.html");
-	}
+		header("location:login.php");
+	}*/
 	
-	if($_SESSION['Status'] != "admin")
+	if($_SESSION['Ostatus'] != "admin")
 	{
-		header("location:login.html");
+		header("location:login.php");
 	}
 	//สร้างแถบเมนู
 	require("navbar_a.html");
@@ -18,7 +18,7 @@
 	mysqli_set_charset($link,'utf8');
 	$sql = "use recyclebank";
 	$result = mysqli_query($link,$sql);	
-	$sql = "SELECT * FROM officer WHERE OfficerID = '".$_SESSION['OfficerID']."' ";
+	$sql = "SELECT * FROM officer WHERE OID = '".$_SESSION['OID']."' ";
 	$result = mysqli_query($link,$sql);	
 	$row = mysqli_fetch_array($result);
 	
@@ -36,12 +36,12 @@
 		<table class="table table-bordered">
 		<tbody>
 		  <tr>
-			<td>Username:</td>
-			<td><?php echo $row['Username'];?></td>
+			<td>ID:</td>
+			<td><?php echo $row['OID'];?></td>
 		  </tr>
 		  <tr>
 			<td>Name:</td>
-			<td><?php echo $row['Name'];?></td>
+			<td><?php echo $row['Oname'];?></td>
 		  </tr>
 		</tbody>
 		</table>
@@ -50,21 +50,6 @@
  
   </div>
 </div>
-<!--<div class="container">
-  <h2>ผู้ดูแลระบบ</h2>          
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <td>Username</td>
-        <td><?php echo $row['Username'];?></td>
-      </tr>
-      <tr>
-        <td>Name</td>
-        <td><?php echo $row['Name'];?></td>
-      </tr>
-    </tbody>
-  </table>
-</div>-->
 	<br>
 	<a href="edit_profile.php">แก้ไข</a><br>
 	<br>

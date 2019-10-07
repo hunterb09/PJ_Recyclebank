@@ -1,6 +1,8 @@
 <?php
+	session_start();
 	//สร้างแถบเมนู
-	require("navbar_a.html"); 
+	require("navbar_officer.php");
+	//navbar_officer.php, garbage_show.php, stationary_show.php
 ?>
 
 <html>

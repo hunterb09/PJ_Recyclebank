@@ -1,25 +1,27 @@
-<meta charset="UTF-8">
 <?php
-//1. เชื่อมต่อ database: 
-include('connection.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
-//สร้างตัวแปรสำหรับรับค่า member_id จากไฟล์แสดงข้อมูล
-
-$OfficerID = $_REQUEST['$OfficerID'];
-//ลบข้อมูลออกจาก database ตาม member_id ที่ส่งมา
- 
-$sql = "DELETE FROM officer WHERE OfficerID='$OfficerID'";
-$result = mysqli_query($link, $sql) or die ("Error in query: $sql " . mysqli_error());
- 
-//จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม	
-	if($result){
-	echo "<script type='text/javascript'>";
-	echo "alert('delete Succesfuly');";
-	echo "window.location = 'show_user.php'; ";
-	echo "</script>";
-	}
-	else{
-	echo "<script type='text/javascript'>";
-	echo "alert('Error back to delete again');";
-	echo "</script>";
-}
+	//เชื่อมต่อฐานข้อมูล 
+	$link = mysqli_connect("localhost", "root");
+	mysqli_set_charset($link,'utf8');
+	$sql = "use recyclebank";
+	$result = mysqli_query($link,$sql);
+	$OID = mysqli_real_escape_string($link,$_GET['OID']);
+	$sql = "DELETE FROM officer WHERE OID = $OID ";
+	$result = mysqli_query($link,$sql);	
+	if ($result)
+		{
+			echo "<script type='text/javascript'>";
+			echo "alert('การลบข้อมูลสำเร็จ');";
+			echo "window.location = 'officer_show.php'; ";
+			echo "</script>";
+			mysqli_close($link);
+		}
+	else
+		{
+			echo "<script type='text/javascript'>";
+			echo "alert('ไม่สามารถลบข้อมูลได้');";
+			echo "window.location = 'officer_show.php'; ";
+			echo "</script>";
+		}
+	//สร้างแถบเมนู
+	require("officer_show.php");
 ?>

@@ -1,6 +1,7 @@
 <?php
+	session_start();
 	//สร้างแถบเมนู
-	require("navbar_a.html");
+	require("navbar_officer.php");
 ?>
 <html>
 	<head>
@@ -13,16 +14,20 @@
 				<tbody>
 					<tr>
 						<td class="text-right" width="10%">ชื่อเครื่องเขียน: </td>
-						<td width="10%"><input type="text" name="name"></td>
+						<td class="text-left" width="10%"><input type="text" name="Sname"></td>
 					</tr>
-
+					<tr>
+						<td class="text-right" width="10%">กลุ่มเครื่องเขียน: </td>
+						<td class="text-left">
+							<select name="Sgroup">
+								<option value="01/05/2019+">01/05/2019+</option>
+								<option value=""></option>
+							</select>
+						</td>
+					</tr>
 					<tr>
 						<td class="text-right" width="10%">ราคา: </td>
-						<td width="10%"><input type="text" name="pirce">บาท</td>
-					</tr>
-					<tr>
-						<td class="text-right" width="10%">จำนวน: </td>
-						<td width="10%"><input type="text" name="amount"></td>
+						<td class="text-left" width="10%"><input type="text" name="Spirce">บาท</td>
 					</tr>
 				</tbody>
 			</table><br>
