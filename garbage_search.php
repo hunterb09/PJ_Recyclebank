@@ -20,17 +20,6 @@
 			</table>
 		</form>
 		
-		<form method=post action="garbage_search_name.php">
-			<table border="0" width="80%" align="center">
-				<tbody>
-					<tr>
-						<td class="text-right" width="10%">จากชื่อ: </td>
-						<td class="text-left" width="10%"><input type="text" name="name"><input type="submit" value="ค้นหา"> </td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-		
 		<form method=post action="garbage_search_type.php">
 			<table border="0" width="80%" align="center">
 				<tbody>
@@ -49,6 +38,35 @@
 				</tbody>
 			</table>
 		</form>
+
+		<form method=post action="garbage_search_name.php">
+			<table border="0" width="80%" align="center">
+				<tbody>
+					<tr>
+						<td class="text-right" width="10%">จากชื่อ: </td>
+						<td class="text-left" width="10%"><input type="text" name="name"><input type="submit" value="ค้นหา"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		
+
+		<form method=post action="garbage_search_group.php">
+			<table border="0" width="80%" align="center">
+				<tbody>
+					<tr>
+						<td class="text-right" width="10%">จากกลุ่ม: </td>
+						<td class="text-left" width="10%">
+							<select name="group">
+								<option value="01/05/2019-30/06/2019">01/05/2019-30/06/2019</option>
+								<option value="01/07/2019+">01/07/2019+</option>
+							</select>
+							<input type="submit" value="ค้นหา"> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 		
 		<form method=post action="garbage_search_pirce.php">
 			<table border="0" width="80%" align="center">
@@ -60,6 +78,7 @@
 				</tbody>
 			</table>
 		</form>
+
 		
 		<br><a href='garbage_show.php'>ย้อนกลับ </a>
 		
